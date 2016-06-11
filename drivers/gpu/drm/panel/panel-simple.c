@@ -710,6 +710,30 @@ static const struct panel_desc ampire_am_480272h3tmqw_t01h = {
 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
 };
 
+static const struct drm_display_mode ampire_am800480r2_mode = {
+	.clock = 33333,
+	.hdisplay = 800,
+	.hsync_start = 800 + 168,
+	.hsync_end = 800 + 168 + 64,
+	.htotal = 800 + 168 + 64 + 88,
+	.vdisplay = 480,
+	.vsync_start = 480 + 37,
+	.vsync_end = 480 + 37 + 2,
+	.vtotal = 480 + 37 + 2 + 8,
+	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
+};
+
+static const struct panel_desc ampire_am800480r2 = {
+	.modes = &ampire_am800480r2_mode,
+	.num_modes = 1,
+	.bpc = 6,
+	.size = {
+		.width = 152,
+		.height = 91,
+	},
+	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+};
+
 static const struct drm_display_mode ampire_am800480r3tmqwa1h_mode = {
 	.clock = 33333,
 	.hdisplay = 800,
@@ -3919,6 +3943,9 @@ static const struct of_device_id platform_of_match[] = {
 		.compatible = "ampire,am800480r3tmqwa1h",
 		.data = &ampire_am800480r3tmqwa1h,
 	}, {
+ 		.compatible = "ampire,am800480r2",
+ 		.data = &ampire_am800480r2,
+ 	}, {
 		.compatible = "arm,rtsm-display",
 		.data = &arm_rtsm,
 	}, {
