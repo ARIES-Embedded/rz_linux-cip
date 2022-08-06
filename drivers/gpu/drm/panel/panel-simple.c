@@ -766,7 +766,7 @@ static const struct panel_desc ampire_am_480272h3tmqw_t01h = {
 };
 
 static const struct drm_display_mode ampire_am800480r2_mode = {
-	.clock = 33333,
+	.clock = 35414,
 	.hdisplay = 800,
 	.hsync_start = 800 + 168,
 	.hsync_end = 800 + 168 + 64,
@@ -3998,8 +3998,8 @@ static const struct of_device_id platform_of_match[] = {
 		.compatible = "ampire,am800600p5tmqw-tb8h",
 		.data = &ampire_am800600p5tmqwtb8h,
 	}, {
- 		.compatible = "ampire,am800480r2",
- 		.data = &ampire_am800480r2,
+		.compatible = "ampire,am800480r2",
+		.data = &ampire_am800480r2,
  	}, {
 		.compatible = "arm,rtsm-display",
 		.data = &arm_rtsm,
