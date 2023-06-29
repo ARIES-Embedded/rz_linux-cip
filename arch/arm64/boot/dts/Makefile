@@ -6,6 +6,7 @@ subdir-y += amazon
 subdir-y += amd
 subdir-y += amlogic
 subdir-y += apm
+subdir-y += aries
 subdir-y += arm
 subdir-y += bitmain
 subdir-y += broadcom
