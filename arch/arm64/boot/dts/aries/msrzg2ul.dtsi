@@ -58,6 +58,10 @@
 	};
 };
 
+&extal_clk {
+	clock-frequency = <24000000>;
+};
+
 &sbc {
 	status = "okay";
 
