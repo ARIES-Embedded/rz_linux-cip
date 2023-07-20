@@ -89,12 +89,12 @@
 				read-only;
 			};
 			partition@100000 {
-				label = "dtb";
+				label = "env";
 				reg = <0 0x00100000 0 0x00020000>;
 				read-only;
 			};
 			partition@120000 {
-				label = "env";
+				label = "dtb";
 				reg = <0 0x00120000 0 0x00020000>;
 				read-only;
 			};
