@@ -86,26 +86,22 @@
 			partition@0000000 {
 				label = "fip";
 				reg = <0 0x00000000 0 0x00100000>;
-				read-only;
 			};
 			partition@100000 {
 				label = "env";
 				reg = <0 0x00100000 0 0x00020000>;
-				read-only;
 			};
 			partition@120000 {
 				label = "dtb";
 				reg = <0 0x00120000 0 0x00020000>;
-				read-only;
 			};
 			partition@140000 {
 				label = "kernel";
 				reg = <0 0x00140000 0 0x00600000>;
-				read-only;
 			};
 			partition@740000 {
 				label = "ramdisk";
-				reg = <0 0x00840000 0 0x008C0000>;
+				reg = <0 0x00740000 0 0x008C0000>;
 			};
 		};
 	};
