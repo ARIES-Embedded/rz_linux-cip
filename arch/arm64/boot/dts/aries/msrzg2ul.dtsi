@@ -19,7 +19,7 @@
 		ethernet0 = &eth0;
 		ethernet1 = &eth1;
 		mmc0 = &sdhi0;
-        mmc1 = &sdhi1;
+		mmc1 = &sdhi1;
 		i2c0 = &i2c0;
 		i2c1 = &i2c1;
 	};
@@ -84,7 +84,7 @@
 			#size-cells = <2>;
 
 			partition@0000000 {
-				label = "fip";
+				label = "bootloader";
 				reg = <0 0x00000000 0 0x00100000>;
 			};
 			partition@100000 {
@@ -283,7 +283,7 @@
 		};
 
 		sd0_ctrl {
-			pins = "SD0_CLK", "SD0_CMD";
+			pins = "SD0_CLK", "SD0_CMD", "SD0_RST#";
 			power-source = <1800>;
 		};
 
@@ -315,7 +315,7 @@
 		sd1_mux {
 			pinmux = <RZG2L_PORT_PINMUX(0, 2, 1)>; /* SD1_CD */
 		};
-	};	
+	};
 
 	ether0_pins: eth0 {
 		pinmux =
@@ -371,8 +371,8 @@
 
 	scif1_pins: scif1 {
 		pinmux =
-			<RZG2L_PORT_PINMUX(18, 4, 6)>, /* RxD */
-			<RZG2L_PORT_PINMUX(18, 5, 6)>; /* TxD */
+			<RZG2L_PORT_PINMUX(18, 4, 6)>, /* TxD */
+			<RZG2L_PORT_PINMUX(18, 5, 6)>; /* RxD */
 	};
 
 	i2c0_pins: i2c0 {
