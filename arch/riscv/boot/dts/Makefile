@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
+subdir-y += aries
 subdir-y += sifive
 subdir-y += kendryte
 subdir-y += renesas
