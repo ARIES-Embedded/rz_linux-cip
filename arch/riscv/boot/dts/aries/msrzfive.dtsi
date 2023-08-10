@@ -118,7 +118,7 @@
 	mmc-hs200-1_8v;
 	non-removable;
 	fixed-emmc-driver-type = <1>;
-	status = "okay";
+	status = "disabled";
 };
 
 &sdhi1 {
