@@ -18,7 +18,7 @@
 	memory@48000000 {
 		device_type = "memory";
 		/* first 128MB is reserved for secure area. */
-		reg = <0 0x48000000 0 0x38000000>;
+		reg = <0 0x48000000 0 0x18000000>;
 	};
 
 	reserved-memory {
@@ -26,14 +26,13 @@
 		#size-cells = <2>;
 		ranges;
 
-		global_cma: linux,cma@58000000 {
+		global_cma: linux,cma@50000000 {
 			compatible = "shared-dma-pool";
 			no-map;
-			reg = <0x0 0x58000000 0x0 0x08000000>;
+			reg = <0x0 0x50000000 0x0 0x04000000>;
 		};
 	};
 };
-
 
 &ehci0 {
 	memory-region = <&global_cma>;
