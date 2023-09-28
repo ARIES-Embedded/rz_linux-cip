@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Device Tree Source for the RZ/Five Evaluation board
+ *
+ * Copyright (C) 2021 Renesas Electronics Corp.
+ */
+
+#include "msrzfive.dts"
+
+&sdhi0 {
+	status = "disabled";
+};
