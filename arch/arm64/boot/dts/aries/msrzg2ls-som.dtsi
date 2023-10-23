@@ -23,7 +23,7 @@
 	memory@48000000 {
 		device_type = "memory";
 		/* first 128MB is reserved for secure area. */
-		reg = <0x0 0x48000000 0x0 0x78000000>;
+		reg = <0x0 0x48000000 0x0 0x38000000>;
 	};
 
 	reserved-memory {
@@ -35,12 +35,12 @@
 			compatible = "shared-dma-pool";
 			linux,cma-default;
 			reusable;
-			reg = <0x0 0x58000000 0x0 0x10000000>;
+			reg = <0x0 0x58000000 0x0 0x8000000>;
 		};
 		mmp_reserved: linux,multimedia {
 			compatible = "shared-dma-pool";
 			reusable;
-			reg = <0x00000000 0x68000000 0x0 0x8000000>;
+			reg = <0x00000000 0x68000000 0x0 0x4000000>;
 		};
 	};
 
@@ -92,6 +92,7 @@
 		regulator-max-microvolt = <3300000>;
 		states = <3300000 1>, <1800000 0>;
 		regulator-boot-on;
+		gpios-states = <1>;
 		gpios = <&pinctrl RZG2L_GPIO(39, 0) GPIO_ACTIVE_HIGH>;
 		regulator-always-on;
 	};
@@ -289,7 +290,7 @@
 			};
 			partition@740000 {
 				label = "ramdisk";
-				reg = <0 0x00740000 0 0x008C0000>;
+				reg = <0 0x00740000 0 0x038C0000>;
 			};
 		};
 	};
