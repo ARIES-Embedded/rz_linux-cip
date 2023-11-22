@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 /*
- * Device Tree Source for the MSRZG2LS SMARC SOM common parts
+ * Device Tree Source for the MRZG2LS SMARC SOM common parts
  *
  * Copyright (C) 2021 Renesas Electronics Corp.
  * Copyright (C) 2023 ARIES Embedded
