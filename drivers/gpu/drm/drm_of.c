@@ -399,3 +399,32 @@ int drm_of_lvds_get_dual_link_pixel_order(const struct device_node *port1,
 		DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS;
 }
 EXPORT_SYMBOL_GPL(drm_of_lvds_get_dual_link_pixel_order);
+
+/**
+ * drm_of_get_data_lanes_count - Get DSI/(e)DP data lane count
+ * @endpoint: DT endpoint node of the DSI/(e)DP source or sink
+ * @min: minimum supported number of data lanes
+ * @max: maximum supported number of data lanes
+ *
+ * Count DT "data-lanes" property elements and check for validity.
+ *
+ * Return:
+ * * min..max - positive integer count of "data-lanes" elements
+ * * -ve - the "data-lanes" property is missing or invalid
+ * * -EINVAL - the "data-lanes" property is unsupported
+ */
+int drm_of_get_data_lanes_count(const struct device_node *endpoint,
+				const unsigned int min, const unsigned int max)
+{
+	int ret;
+
+	ret = of_property_count_u32_elems(endpoint, "data-lanes");
+	if (ret < 0)
+		return ret;
+
+	if (ret < min || ret > max)
+		return -EINVAL;
+
+	return ret;
+}
+EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count);
