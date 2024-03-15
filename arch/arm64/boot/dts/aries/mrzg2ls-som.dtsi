@@ -114,19 +114,6 @@
 	/delete-node/ channel@7;
 };
 
-&dsi0 {
-	status = "okay";
-
-	ports {
-		port@1 {
-			dsi0_out: endpoint {
-				remote-endpoint = <&tc9595_in>;
-				data-lanes = <1 2 3 4>;
-			};
-		};
-	};
-};
-
 &eth0 {
 	pinctrl-0 = <&eth0_pins>;
 	pinctrl-names = "default";
@@ -273,7 +260,7 @@
 		};
 	};
 
-	
+
 };
 
 &sbc {
@@ -373,35 +360,6 @@
 		reg = <0x12>;
 
 		rtc-enable;
-	};
-
-	tc9595@68 {
-		compatible = "toshiba,tc358767";
-		reg = <0x68>;
-		//shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-		//reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-		data-lanes = <1 2 3 4>;
-		clock-names = "ref";
-		clocks = <&tc9595_clk>;
-
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			port@0 {
-				reg = <0>;
-				tc9595_in: endpoint {
-					remote-endpoint = <&dsi0_out>;
-				};
-			};
-
-			//port@2 {
-			//	reg = <2>;
-			//	bridge_out: endpoint {
-			//		remote-endpoint = <&dp_in>;
-			//	};
-			//};
-		};
 	};
 
 	rtc: isl1208@6f {
