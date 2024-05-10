@@ -29,6 +29,26 @@
 		stdout-path = "serial0:115200n8";
 	};
 
+        //backlight: backlight {
+        //        compatible = "pwm-backlight";
+	//	//pinctrl-0 = <&bl_pins>;
+	//	//pinctrl-names = "default";
+        //        //pwms = <&mtu3 0 50000>;
+        //        //brightness-levels = <0 4 8 16 32 64 128 255>;
+        //        //default-brightness-level = <6>;
+        //};
+
+	panel_rgb: panel-rgb {
+		compatible = "ampire,am800480r2";
+		//backlight = <&backlight>;
+
+		port {
+			panel_in_rgb: endpoint {
+				remote-endpoint = <&du_out_rgb>;
+			};
+		};
+	};
+
 	reg_1p8v: regulator0 {
 		compatible = "regulator-fixed";
 
@@ -201,6 +221,18 @@
 	pinctrl-0 = <&i2c0_pins>;
 	pinctrl-names = "default";
 	status = "okay";
+
+	touch: ft5426@38 {
+		compatible = "edt,edt-ft5506";
+		reg = <0x38>;
+		//pinctrl-0 = <&touch_pins>;
+		//pinctrl-names = "default";
+		interrupt-parent = <&pinctrl>;
+		interrupts = <RZG2L_GPIO(14, 2) IRQ_TYPE_EDGE_FALLING>; /* P14_2 */
+		touchscreen-size-x = <800>;
+		touchscreen-size-y = <480>;
+		status = "okay";
+	};
 };
 
 &i2c1 {
@@ -257,9 +289,13 @@
 	status = "okay";
 };
 
-&mtu3 {
-	status = "okay";
-};
+//&mtu3 {
+//	pinctrl-0 = <&mtu3_pins>;
+//	pinctrl-names = "default";
+//	status = "okay";
+//
+//	pwm_mode1 = <2 0>;
+//};
 
 &wdt0 {
 	status = "okay";
@@ -272,6 +308,20 @@
 
 &ostm2 {
 	status = "okay";
+};
+
+&du {
+	pinctrl-0 = <&du_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+
+	ports {
+		port@0 {
+			du_out_rgb: endpoint {
+				remote-endpoint = <&panel_in_rgb>;
+			};
+		};
+	};
 };
 
 &pinctrl {
@@ -293,12 +343,12 @@
 		};
 	};
 
-	sd1_pwr_en {
-		gpio-hog;
-		gpios = <RZG2L_GPIO(11, 2) GPIO_ACTIVE_HIGH>;
-		output-high;
-		line-name = "sd1_pwr_en";
-	};
+	//sd1_pwr_en {
+	//	gpio-hog;
+	//	gpios = <RZG2L_GPIO(11, 2) GPIO_ACTIVE_HIGH>;
+	//	output-high;
+	//	line-name = "sd1_pwr_en";
+	//};
 
 	sdhi1_pins: sd1 {
 		sd1_data {
@@ -401,4 +451,60 @@
 	adc_pins: adc {
 		pinmux = <RZG2L_PORT_PINMUX(5, 1, 4)>; /* ADC_TRG */
 	};
+
+	//touch_pins: touch {
+	//	pinmux = <RZG2L_PORT_PINMUX(11, 2, 0)>; /* IRQ */
+	//};
+
+	// Unused pins
+	// <RZG2L_PORT_PINMUX(11, 2, 6)>,/* DISP_DATA0 */
+	// <RZG2L_PORT_PINMUX(13, 1, 6)>,/* DISP_DATA1 */
+	// <RZG2L_PORT_PINMUX(14, 2, 6)>,/* DISP_DATA8 */
+	// <RZG2L_PORT_PINMUX(14, 1, 6)>,/* DISP_DATA9 */
+	// <RZG2L_PORT_PINMUX(15, 2, 6)>,/* DISP_DATA16 */
+	// <RZG2L_PORT_PINMUX(17, 0, 6)>,/* DISP_DATA17 */
+
+	du_pins: du {
+		data {
+			pinmux = <RZG2L_PORT_PINMUX(13, 0, 6)>,/* DISP_DATA2 */
+				 <RZG2L_PORT_PINMUX(13, 4, 6)>,/* DISP_DATA3 */
+				 <RZG2L_PORT_PINMUX(13, 3, 6)>,/* DISP_DATA4 */
+				 <RZG2L_PORT_PINMUX(12, 1, 6)>,/* DISP_DATA5 */
+				 <RZG2L_PORT_PINMUX(13, 2, 6)>,/* DISP_DATA6 */
+				 <RZG2L_PORT_PINMUX(14, 0, 6)>,/* DISP_DATA7 */
+				 <RZG2L_PORT_PINMUX(16, 0, 6)>,/* DISP_DATA10 */
+				 <RZG2L_PORT_PINMUX(15, 0, 6)>,/* DISP_DATA11 */
+				 <RZG2L_PORT_PINMUX(16, 1, 6)>,/* DISP_DATA12 */
+				 <RZG2L_PORT_PINMUX(15, 1, 6)>,/* DISP_DATA13 */
+				 <RZG2L_PORT_PINMUX(15, 3, 6)>,/* DISP_DATA14 */
+				 <RZG2L_PORT_PINMUX(18, 0, 6)>,/* DISP_DATA15 */
+				 <RZG2L_PORT_PINMUX(17, 2, 6)>,/* DISP_DATA18 */
+				 <RZG2L_PORT_PINMUX(17, 1, 6)>,/* DISP_DATA19 */
+				 <RZG2L_PORT_PINMUX(18, 1, 6)>,/* DISP_DATA20 */
+				 <RZG2L_PORT_PINMUX(18, 2, 6)>,/* DISP_DATA21 */
+				 <RZG2L_PORT_PINMUX(17, 3, 6)>,/* DISP_DATA22 */
+				 <RZG2L_PORT_PINMUX(18, 3, 6)>;/* DISP_DATA23 */
+			drive-strength = <2>;
+		};
+
+		sync {
+			pinmux = <RZG2L_PORT_PINMUX(11, 0, 6)>, /* HSYNC */
+				 <RZG2L_PORT_PINMUX(12, 0, 6)>; /* VSYNC */
+			drive-strength = <2>;
+		};
+
+		de {
+			pinmux = <RZG2L_PORT_PINMUX(11, 1, 6)>; /* DE */
+			drive-strength = <2>;
+		};
+
+		clk {
+			pinmux = <RZG2L_PORT_PINMUX(11, 3, 6)>; /* CLK */
+		};
+	};
+
+	//mtu3_pins: mtu3 {
+	//	pinmux = <RZG2L_PORT_PINMUX(4, 0, 4)>; /* MTIOC2A */
+	//};
+
 };
