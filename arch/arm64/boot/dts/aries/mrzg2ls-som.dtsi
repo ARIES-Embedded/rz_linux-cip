@@ -40,7 +40,7 @@
 		mmp_reserved: linux,multimedia {
 			compatible = "shared-dma-pool";
 			reusable;
-			reg = <0x00000000 0x68000000 0x0 0x4000000>;
+			reg = <0x00000000 0x68000000 0x0 0x8000000>;
 		};
 	};
 
