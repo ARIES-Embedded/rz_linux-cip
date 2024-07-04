@@ -15,7 +15,7 @@
 
 / {
 	model = "ARIES mrzv2ls based on r9a07g054l2";
-	compatible = "aries,mrzv2ls", "renesas,r9a07g054l2", "renesas,r9a07g054"
+	compatible = "aries,mrzv2ls", "renesas,r9a07g054l2", "renesas,r9a07g054";
 
         backlight: backlight {
                 compatible = "pwm-backlight";
