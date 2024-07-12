@@ -11,7 +11,7 @@
 #include "msrzg2ul.dtsi"
 
 / {
-	model = "ARIES msrz2gul based on r9a07g043u11";
+	model = "ARIES MSRZ2GUL OSM SoM on EVK";
 	compatible = "aries,msrz2gul", "renesas,r9a07g043u11", "renesas,r9a07g043";
 
 	memory@48000000 {

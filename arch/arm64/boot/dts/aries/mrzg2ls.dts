@@ -14,7 +14,7 @@
 #include "mrzg2ls.dtsi"
 
 / {
-	model = "ARIES mrzg2ls based on r9a07g044l2";
+	model = "ARIES MRZG2LS SMARC SoM on EVK";
 	compatible = "aries,msrz2gls", "renesas,r9a07g044l2", "renesas,r9a07g044";
 };
 
