@@ -11,8 +11,8 @@
 #include "msrzg2ul.dtsi"
 
 / {
-	model = "ARIES MSRZ2GUL OSM SoM on EVK";
-	compatible = "aries,msrz2gul", "renesas,r9a07g043u11", "renesas,r9a07g043";
+	model = "ARIES MSRZ2GUL-BAA OSM";
+	compatible = "aries,msrz2gul-baa", "aries,msrz2gul", "renesas,r9a07g043u11", "renesas,r9a07g043";
 
 	memory@48000000 {
 		device_type = "memory";
@@ -31,11 +31,11 @@
 			reusable;
 			reg = <0x0 0x58000000 0x0 0x08000000>;
 		};
-		mmp_reserved: linux,multimedia {
-			compatible = "shared-dma-pool";
-			reusable;
-			reg = <0x00000000 0x68000000 0x0 0x8000000>;
-		};
+		//mmp_reserved: linux,multimedia {
+		//	compatible = "shared-dma-pool";
+		//	reusable;
+		//	reg = <0x00000000 0x68000000 0x0 0x8000000>;
+		//};
 	};
 };
 
@@ -53,4 +53,38 @@
 
 &ohci1 {
 	memory-region = <&global_cma>;
+};
+
+&pinctrl {
+	sdhi0_pins: sd0 {
+		sd0_data {
+			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
+			       "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
+			power-source = <1800>;
+		};
+
+		sd0_ctrl {
+			pins = "SD0_CLK", "SD0_CMD", "SD0_RST#";
+			power-source = <1800>;
+		};
+
+		sd0_rst {
+			pins = "SD0_RST#";
+			power-source = <1800>;
+		};
+	};
+};
+
+&sdhi0 {
+	pinctrl-0 = <&sdhi0_pins>;
+	pinctrl-1 = <&sdhi0_pins>;
+	pinctrl-names = "default", "state_uhs";
+
+	vmmc-supply = <&reg_3p3v>;
+	vqmmc-supply = <&reg_1p8v>;
+	bus-width = <8>;
+	mmc-hs200-1_8v;
+	non-removable;
+	fixed-emmc-driver-type = <1>;
+	status = "okay";
 };
