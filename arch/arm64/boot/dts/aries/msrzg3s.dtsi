@@ -424,21 +424,6 @@
 	status = "okay";
 };
 
-/* eMMC */
-&sdhi0 {
-	pinctrl-0 = <&sdhi0_pins>;
-	pinctrl-1 = <&sdhi0_pins>;
-	pinctrl-names = "default", "state_uhs";
-	vmmc-supply = <&reg_3p3v>;
-	vqmmc-supply = <&reg_1p8v>;
-	bus-width = <8>;
-	mmc-hs200-1_8v;
-	non-removable;
-	fixed-emmc-driver-type = <1>;
-	//max-frequency = <125000000>;
-	status = "okay";
-};
-
 /* micro-SD card */
 &sdhi1 {
 	pinctrl-0 = <&sdhi1_pins>;
